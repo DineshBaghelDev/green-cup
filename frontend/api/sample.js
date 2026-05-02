@@ -37,9 +37,10 @@ module.exports = async (req, res) => {
     const data = await fs.readFile(csvPath, 'utf8');
     const rows = parseCSV(data);
     const leaderboard = computeScores(rows);
-    res.setHeader('Content-Type', 'application/json');
-    return res.status(200).send(JSON.stringify({ leaderboard }));
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    return res.end(JSON.stringify({ leaderboard }));
   } catch (err) {
-    res.status(500).json({ error: 'sample data missing' });
+    res.writeHead(500, { 'Content-Type': 'application/json' });
+    return res.end(JSON.stringify({ error: 'sample data missing' }));
   }
 };

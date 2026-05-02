@@ -28,3 +28,21 @@ npm run dev
 Notes:
 - This is a prototype; coefficients and models are illustrative only.
 - For production, add robust CSV parsing, auth, validation, persistence, and meter integrations.
+ 
+Deployment
+----------
+
+This project can be deployed on Vercel. The `frontend` folder contains a serverless function at `frontend/api/sample.js` which reads the sample CSV at `frontend/public/sample_data/hostel_bills.csv` and provides the `/api/sample` endpoint used by the UI.
+
+Quick deploy steps (from repo root):
+
+```bash
+npm i -g vercel    # or use npx vercel
+vercel login
+vercel --prod      # when prompted, set project root to "frontend"
+```
+
+After deployment, add the Vercel URL here (replace the placeholder):
+
+Deployed: green-cup.vercel.app
+

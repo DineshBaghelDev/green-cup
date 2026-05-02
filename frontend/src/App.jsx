@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useMemo, useState, useEffect } from 'react'
 
 const screenTabs = [
   { id: 'dashboard', label: 'Dashboard' },
@@ -7,12 +7,8 @@ const screenTabs = [
   { id: 'badges', label: 'Badges' }
 ]
 
-const leaderboard = [
-  { hostel: 'Hostel 6', score: 94.2, trend: '+2', note: 'Pioneer in energy efficiency' },
-  { hostel: 'Hostel 12', score: 89.5, trend: '-1', note: 'Waste segregation champions' },
-  { hostel: 'Hostel 3', score: 87.8, trend: '0', note: 'Consistent performers' },
-  { hostel: 'Hostel 4', score: 85.1, trend: '+1', note: 'Strong participation growth' }
-]
+// Leaderboard now comes from the serverless API (`/api/sample`).
+// Fallback static data removed; App will fetch on mount and pass to the dashboard.
 
 const weeklyCarbon = [80, 75, 78, 65, 55, 50, 45]
 const monthlyEnergy = [1240, 1410, 1380]
@@ -82,7 +78,7 @@ function BarChart({ values, labels, suffix = '' }) {
   )
 }
 
-function DashboardScreen() {
+function DashboardScreen({ leaderboard }) {
   return (
     <>
       <section className="hero-grid">
@@ -127,7 +123,7 @@ function DashboardScreen() {
             <div className="live-chip">Live</div>
           </div>
           <div className="leaderboard-list">
-            {leaderboard.map((item, index) => (
+            {leaderboard && leaderboard.length > 0 ? leaderboard.map((item, index) => (
               <div className="leaderboard-row" key={item.hostel}>
                 <div className={`rank-circle rank-${index + 1 <= 1 ? 'gold' : 'neutral'}`}>{index + 1}</div>
                 <div className="leaderboard-main">
@@ -139,7 +135,9 @@ function DashboardScreen() {
                   <div className={`trend trend-${item.trend.startsWith('-') ? 'down' : 'up'}`}>{item.trend}</div>
                 </div>
               </div>
-            ))}
+            )) : (
+              <div className="leaderboard-empty">Loading leaderboard…</div>
+            )}
           </div>
         </article>
 
@@ -318,7 +316,38 @@ function BadgesScreen() {
 
 export default function App() {
   const [activeScreen, setActiveScreen] = useState('dashboard')
+  const [leaderboard, setLeaderboard] = useState([])
+  const [loadingLeaderboard, setLoadingLeaderboard] = useState(true)
+  const [leaderboardError, setLeaderboardError] = useState(null)
   const activeLabel = useMemo(() => screenTabs.find((tab) => tab.id === activeScreen)?.label ?? 'Dashboard', [activeScreen])
+
+  useEffect(() => {
+    let mounted = true
+    setLoadingLeaderboard(true)
+    fetch('/api/sample')
+      .then((r) => {
+        if (!r.ok) throw new Error('Network response was not ok')
+        return r.json()
+      })
+      .then((data) => {
+        if (!mounted) return
+        if (data && Array.isArray(data.leaderboard)) {
+          // map server data shape to UI shape
+          const mapped = data.leaderboard.map((it) => ({
+            hostel: it.hostel,
+            score: it.greenScore ?? it.score ?? 0,
+            trend: '',
+            note: ''
+          }))
+          setLeaderboard(mapped)
+        } else {
+          setLeaderboard([])
+        }
+      })
+      .catch((err) => { if (mounted) setLeaderboardError(err.message || String(err)) })
+      .finally(() => { if (mounted) setLoadingLeaderboard(false) })
+    return () => { mounted = false }
+  }, [])
 
   return (
     <div className="app-shell">
@@ -347,7 +376,7 @@ export default function App() {
           </div>
         </section>
 
-        {activeScreen === 'dashboard' && <DashboardScreen />}
+        {activeScreen === 'dashboard' && <DashboardScreen leaderboard={leaderboard} />}
         {activeScreen === 'analytics' && <AnalyticsScreen />}
         {activeScreen === 'upload' && <UploadScreen />}
         {activeScreen === 'badges' && <BadgesScreen />}
