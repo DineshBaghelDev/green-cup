@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EcoDash - IITB Green Cup</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#b1f0ce",
+                        "surface-container-highest": "#e1e3e4",
+                        "inverse-on-surface": "#f0f1f2",
+                        "tertiary-fixed": "#cde5ff",
+                        "surface-variant": "#e1e3e4",
+                        "secondary-fixed-dim": "#95d4b3",
+                        "on-tertiary-fixed": "#001d32",
+                        "surface-dim": "#d9dadb",
+                        "outline": "#717973",
+                        "outline-variant": "#c1c8c2",
+                        "error-container": "#ffdad6",
+                        "primary-container": "#1b4332",
+                        "on-primary-fixed": "#002114",
+                        "secondary": "#2c694e",
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#86af99",
+                        "surface-tint": "#3f6653",
+                        "tertiary-container": "#003f63",
+                        "surface": "#f8f9fa",
+                        "secondary-container": "#aeeecb",
+                        "on-secondary-container": "#316e52",
+                        "inverse-surface": "#2e3132",
+                        "surface-container": "#edeeef",
+                        "primary": "#012d1d",
+                        "tertiary": "#002842",
+                        "background": "#f8f9fa",
+                        "primary-fixed-dim": "#a5d0b9",
+                        "on-surface": "#191c1d",
+                        "primary-fixed": "#c1ecd4",
+                        "surface-bright": "#f8f9fa",
+                        "on-tertiary": "#ffffff",
+                        "inverse-primary": "#a5d0b9",
+                        "on-primary-fixed-variant": "#274e3d",
+                        "surface-container-high": "#e7e8e9",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed-dim": "#94ccff",
+                        "on-surface-variant": "#414844",
+                        "error": "#ba1a1a",
+                        "surface-container-low": "#f3f4f5",
+                        "surface-container-lowest": "#ffffff",
+                        "on-background": "#191c1d",
+                        "on-error": "#ffffff",
+                        "on-secondary-fixed": "#002114",
+                        "on-tertiary-fixed-variant": "#004b74",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed-variant": "#0e5138",
+                        "on-tertiary-container": "#59adef"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "card-padding": "24px",
+                        "gutter": "24px",
+                        "base": "8px",
+                        "section-gap": "48px",
+                        "container-margin": "32px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "label-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "headline-xl": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md antialiased pb-24">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm shadow-emerald-900/5">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-secondary-container">
+<img alt="Student profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA17ffvMEHVMxM3llKuPSotQ3J2J_boHZ20bk6AxLE5O379S7ISsmXiucO3TNi9WaGHjUs4ynyno5tuS6ussyaHLSph1Xyx52mQUIDkicR7kqHklysCpQQsTscz3bNhH1WkK9RPnoYEz7dQjKT_Y3N6zyjUDmDVm339zrXudR0w68mgLeySjT6tGMtFjbkfd5DUWNAvYRSxUiSwMENN0NlVdc3KhZghRJLOs856Mn4BnjVUX63lIG6B586WnmsaVvX-JAOU3p4xK0Kc"/>
+</div>
+<h1 class="font-plus-jakarta-sans font-black text-xl text-emerald-900 tracking-tight">EcoDash</h1>
+</div>
+<div class="hidden md:flex gap-8 items-center">
+<span class="font-plus-jakarta-sans font-bold text-lg text-emerald-700">Dashboard</span>
+<span class="font-plus-jakarta-sans font-semibold text-lg text-slate-500 hover:text-emerald-700 transition-colors">Analytics</span>
+<span class="font-plus-jakarta-sans font-semibold text-lg text-slate-500 hover:text-emerald-700 transition-colors">Upload</span>
+<span class="font-plus-jakarta-sans font-semibold text-lg text-slate-500 hover:text-emerald-700 transition-colors">Badges</span>
+</div>
+<button class="material-symbols-outlined text-emerald-900 p-2 hover:bg-emerald-50 rounded-full transition-colors active:scale-95 duration-200" data-icon="notifications">
+                notifications
+            </button>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-6 mt-8 space-y-gutter">
+<!-- Hero Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<p class="font-label-lg text-secondary uppercase tracking-widest mb-1">IITB Green Cup 2024</p>
+<h2 class="font-headline-xl text-primary">Campus Sustainability Hub</h2>
+</div>
+<div class="flex gap-3">
+<div class="bg-secondary-container/30 px-4 py-2 rounded-xl flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary" data-icon="home">home</span>
+<span class="font-label-lg text-on-secondary-container">Hostel 6</span>
+</div>
+</div>
+</div>
+<!-- Bento Grid: Metrics & Insights -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Overall Campus Score -->
+<div class="md:col-span-4 bg-surface-container-lowest p-card-padding rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between overflow-hidden relative group">
+<div class="relative z-10">
+<h3 class="font-label-lg text-on-surface-variant mb-6">OVERALL CAMPUS GREEN SCORE</h3>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-xl text-primary">82</span>
+<span class="font-headline-md text-on-surface-variant">/ 100</span>
+</div>
+</div>
+<div class="mt-8 space-y-2 relative z-10">
+<div class="flex justify-between font-label-sm text-on-surface-variant">
+<span>Target: 90</span>
+<span>+5.2% vs last month</span>
+</div>
+<div class="h-3 w-full bg-secondary-fixed/30 rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-[82%] rounded-full"></div>
+</div>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-5 group-hover:scale-110 transition-transform duration-500">
+<span class="material-symbols-outlined text-[120px]" data-icon="eco">eco</span>
+</div>
+</div>
+<!-- Total Carbon Offset -->
+<div class="md:col-span-4 bg-primary text-on-primary p-card-padding rounded-xl shadow-lg flex flex-col justify-between relative overflow-hidden">
+<div class="relative z-10">
+<h3 class="font-label-lg text-on-primary-container mb-6">TOTAL CARBON OFFSET</h3>
+<div class="flex items-baseline gap-3">
+<span class="font-headline-xl text-white">12.4</span>
+<span class="font-headline-md text-on-primary-container">Tons</span>
+</div>
+</div>
+<div class="flex items-center gap-2 mt-8 relative z-10 bg-white/10 w-fit px-3 py-1 rounded-full">
+<span class="material-symbols-outlined text-secondary-fixed-dim text-sm" data-icon="trending_up">trending_up</span>
+<span class="font-label-sm text-white">Equivalent to 600 trees planted</span>
+</div>
+<div class="absolute right-0 top-0 h-full w-1/2 bg-gradient-to-l from-secondary/20 to-transparent"></div>
+</div>
+<!-- AI Insight Card -->
+<div class="md:col-span-4 glass-card p-card-padding rounded-xl border border-emerald-100 shadow-sm flex flex-col justify-center items-start gap-4">
+<div class="bg-tertiary-container/10 p-3 rounded-full">
+<span class="material-symbols-outlined text-tertiary-container" data-icon="auto_awesome">auto_awesome</span>
+</div>
+<div>
+<h3 class="font-label-lg text-tertiary-container mb-2">AI INSIGHT</h3>
+<p class="font-body-md text-on-surface">"Hostel 6 reduced electricity by <span class="text-secondary font-bold">14%</span> this week! Keep it up to secure the lead."</p>
+</div>
+<button class="text-tertiary-container font-label-lg flex items-center gap-1 hover:gap-2 transition-all">
+                    View full report <span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+<!-- Leaderboard -->
+<div class="md:col-span-8 bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+<div class="p-card-padding border-b border-outline-variant flex justify-between items-center">
+<h3 class="font-headline-md text-primary">Live Hostel Leaderboard</h3>
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-surface-variant rounded-full font-label-sm">Week 12</span>
+<span class="px-3 py-1 bg-secondary-fixed/50 text-on-secondary-fixed rounded-full font-label-sm">Live</span>
+</div>
+</div>
+<div class="divide-y divide-outline-variant">
+<!-- Rank 1 -->
+<div class="flex items-center p-6 hover:bg-surface-container-low transition-colors group">
+<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center mr-6 font-headline-md text-on-secondary-container">1</div>
+<div class="flex-grow">
+<h4 class="font-headline-md text-on-surface">Hostel 6</h4>
+<p class="font-label-sm text-on-surface-variant">Pioneer in Energy Efficiency</p>
+</div>
+<div class="flex items-center gap-6">
+<div class="text-right">
+<p class="font-headline-md text-primary">94.2</p>
+<p class="font-label-sm text-on-surface-variant">pts</p>
+</div>
+<div class="flex items-center text-secondary font-bold gap-1 bg-secondary-fixed/20 px-2 py-1 rounded">
+<span class="material-symbols-outlined text-sm" data-icon="arrow_upward">arrow_upward</span>
+                                2
+                            </div>
+</div>
+</div>
+<!-- Rank 2 -->
+<div class="flex items-center p-6 hover:bg-surface-container-low transition-colors">
+<div class="w-12 h-12 rounded-full bg-surface-variant flex items-center justify-center mr-6 font-headline-md text-on-surface">2</div>
+<div class="flex-grow">
+<h4 class="font-headline-md text-on-surface">Hostel 12</h4>
+<p class="font-label-sm text-on-surface-variant">Waste Segregation Champions</p>
+</div>
+<div class="flex items-center gap-6">
+<div class="text-right">
+<p class="font-headline-md text-primary">89.5</p>
+<p class="font-label-sm text-on-surface-variant">pts</p>
+</div>
+<div class="flex items-center text-error font-bold gap-1 bg-error-container/20 px-2 py-1 rounded">
+<span class="material-symbols-outlined text-sm" data-icon="arrow_downward">arrow_downward</span>
+                                1
+                            </div>
+</div>
+</div>
+<!-- Rank 3 -->
+<div class="flex items-center p-6 hover:bg-surface-container-low transition-colors">
+<div class="w-12 h-12 rounded-full bg-surface-variant flex items-center justify-center mr-6 font-headline-md text-on-surface">3</div>
+<div class="flex-grow">
+<h4 class="font-headline-md text-on-surface">Hostel 3</h4>
+<p class="font-label-sm text-on-surface-variant">Consistent Performers</p>
+</div>
+<div class="flex items-center gap-6">
+<div class="text-right">
+<p class="font-headline-md text-primary">87.8</p>
+<p class="font-label-sm text-on-surface-variant">pts</p>
+</div>
+<div class="flex items-center text-slate-400 font-bold gap-1 bg-slate-100 px-2 py-1 rounded">
+<span class="material-symbols-outlined text-sm" data-icon="horizontal_rule">horizontal_rule</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Stats -->
+<div class="md:col-span-4 flex flex-col gap-gutter">
+<!-- Energy Stat -->
+<div class="bg-surface-container-lowest p-card-padding rounded-xl border border-outline-variant shadow-sm flex-1">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-secondary-fixed/30 rounded-lg text-secondary">
+<span class="material-symbols-outlined" data-icon="bolt">bolt</span>
+</div>
+<span class="font-label-sm text-secondary font-bold">-12% Energy</span>
+</div>
+<h4 class="font-label-lg text-on-surface-variant mb-2">ENERGY REDUCTION</h4>
+<p class="font-body-md text-on-surface">Monthly reduction across all hostels compared to baseline.</p>
+</div>
+<!-- Waste Stat -->
+<div class="bg-surface-container-lowest p-card-padding rounded-xl border border-outline-variant shadow-sm flex-1">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-tertiary-fixed/30 rounded-lg text-tertiary">
+<span class="material-symbols-outlined" data-icon="recycling">recycling</span>
+</div>
+<span class="font-label-sm text-tertiary font-bold">85% Compliance</span>
+</div>
+<h4 class="font-label-lg text-on-surface-variant mb-2">WASTE SEGREGATED</h4>
+<p class="font-body-md text-on-surface">Successful segregation of wet and dry waste in canteen areas.</p>
+</div>
+<!-- Featured Badge Link -->
+<div class="bg-gradient-to-br from-emerald-800 to-emerald-950 p-card-padding rounded-xl text-white flex items-center justify-between group cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="military_tech" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+</div>
+<div>
+<p class="font-label-sm text-secondary-fixed">Next Goal</p>
+<p class="font-headline-md">Zero Waste Hero</p>
+</div>
+</div>
+<span class="material-symbols-outlined group-hover:translate-x-2 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- Call to Action Banner -->
+<div class="relative w-full rounded-2xl overflow-hidden h-48 group">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDy08ZJYLRGitTwsd_FRbNO5bvZjUYyIZoLa3A5BUgifCLoJWA_7v6lGVs17kWZmqBVly29PbWEYLvz6eKbyo9dZrGCCVNGDlOmhUa9v5qvKhdIv2NggN9IIV92Aw8sSiZThhh9zHIlSQA-B3afHP5uilEtGhuGBfFmRvCdkz6-B9Emm6cWzP0F_bP8_sFwfOIlw-yUdITHIbm8T3QkKvYF3hLH2JTwegt1dOrZigH3gXc_PGmn8g-DsEQpCdV4U_qx9xX6v-E0nx4w"/>
+<div class="absolute inset-0 bg-gradient-to-r from-emerald-950/80 to-transparent flex flex-col justify-center px-12">
+<h3 class="font-headline-lg text-white mb-2">Join the Green Drive</h3>
+<p class="text-emerald-100 mb-4 max-w-md">Weekend campus cleaning and sapling plantation drive starts Saturday, 8 AM.</p>
+<button class="bg-secondary-fixed text-primary px-6 py-2 rounded-full font-label-lg w-fit hover:bg-white transition-colors">Register Now</button>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full h-16 bg-white/95 backdrop-blur-lg border-t border-slate-200 shadow-[0_-4px_20px_rgba(27,67,50,0.08)] flex justify-around items-center px-4 pb-safe z-50 rounded-t-2xl">
+<div class="flex flex-col items-center justify-center bg-emerald-100/50 text-emerald-800 rounded-xl px-4 py-1 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-plus-jakarta-sans text-[10px] font-semibold uppercase tracking-wider">Dashboard</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 px-4 py-1" href="#">
+<span class="material-symbols-outlined" data-icon="leaderboard">leaderboard</span>
+<span class="font-plus-jakarta-sans text-[10px] font-semibold uppercase tracking-wider">Analytics</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 px-4 py-1" href="#">
+<span class="material-symbols-outlined" data-icon="cloud_upload">cloud_upload</span>
+<span class="font-plus-jakarta-sans text-[10px] font-semibold uppercase tracking-wider">Upload</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 px-4 py-1" href="#">
+<span class="material-symbols-outlined" data-icon="military_tech">military_tech</span>
+<span class="font-plus-jakarta-sans text-[10px] font-semibold uppercase tracking-wider">Badges</span>
+</div>
+</nav>
+</body></html>

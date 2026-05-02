@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Institutional Data Integration | EcoDash</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary-fixed": "#b1f0ce",
+                      "surface-container-highest": "#e1e3e4",
+                      "inverse-on-surface": "#f0f1f2",
+                      "tertiary-fixed": "#cde5ff",
+                      "surface-variant": "#e1e3e4",
+                      "secondary-fixed-dim": "#95d4b3",
+                      "on-tertiary-fixed": "#001d32",
+                      "surface-dim": "#d9dadb",
+                      "outline": "#717973",
+                      "outline-variant": "#c1c8c2",
+                      "error-container": "#ffdad6",
+                      "primary-container": "#1b4332",
+                      "on-primary-fixed": "#002114",
+                      "secondary": "#2c694e",
+                      "on-error-container": "#93000a",
+                      "on-primary-container": "#86af99",
+                      "surface-tint": "#3f6653",
+                      "tertiary-container": "#003f63",
+                      "surface": "#f8f9fa",
+                      "secondary-container": "#aeeecb",
+                      "on-secondary-container": "#316e52",
+                      "inverse-surface": "#2e3132",
+                      "surface-container": "#edeeef",
+                      "primary": "#012d1d",
+                      "tertiary": "#002842",
+                      "background": "#f8f9fa",
+                      "primary-fixed-dim": "#a5d0b9",
+                      "on-surface": "#191c1d",
+                      "primary-fixed": "#c1ecd4",
+                      "surface-bright": "#f8f9fa",
+                      "on-tertiary": "#ffffff",
+                      "inverse-primary": "#a5d0b9",
+                      "on-primary-fixed-variant": "#274e3d",
+                      "surface-container-high": "#e7e8e9",
+                      "on-secondary": "#ffffff",
+                      "tertiary-fixed-dim": "#94ccff",
+                      "on-surface-variant": "#414844",
+                      "error": "#ba1a1a",
+                      "surface-container-low": "#f3f4f5",
+                      "surface-container-lowest": "#ffffff",
+                      "on-background": "#191c1d",
+                      "on-error": "#ffffff",
+                      "on-secondary-fixed": "#002114",
+                      "on-tertiary-fixed-variant": "#004b74",
+                      "on-primary": "#ffffff",
+                      "on-secondary-fixed-variant": "#0e5138",
+                      "on-tertiary-container": "#59adef"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "card-padding": "24px",
+                      "gutter": "24px",
+                      "base": "8px",
+                      "section-gap": "48px",
+                      "container-margin": "32px"
+              },
+              "fontFamily": {
+                      "body-lg": ["Inter"],
+                      "label-sm": ["Inter"],
+                      "headline-lg": ["Plus Jakarta Sans"],
+                      "label-lg": ["Inter"],
+                      "body-md": ["Inter"],
+                      "headline-md": ["Plus Jakarta Sans"],
+                      "headline-xl": ["Plus Jakarta Sans"]
+              },
+              "fontSize": {
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-layer {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background font-body-md text-on-surface">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm shadow-emerald-900/5">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-secondary-container">
+<img alt="User" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwkea_6-y_07M4Sd85wuUW4dOnOvWrFQa1-V9PL3xyrMpc5QRsEz3M7BcZkR2YWBqYj1SX_g7cf1RUly6XMrgy9XUNNh-vCWGz1Ru1EtZo3QhPoGY_eOnTdTbAYvtV-kBerEfoHTV_sAxplzhs58gUUoda4xzAilDyrXXXJKeA82Q442Qya95bMOyOnpzyRbQ8LxTYuH0-o4FLLoSECX1zkAqk5IbnM5eVvIxt9eh_dwJ9V8r3KWCwXxYqmlr1hMiA2jWPhPCByu6Y"/>
+</div>
+<h1 class="font-plus-jakarta-sans font-black text-xl text-emerald-900 tracking-tight">EcoDash</h1>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<nav class="flex gap-6">
+<a class="text-slate-500 hover:text-emerald-700 transition-colors font-semibold text-label-lg" href="#">Dashboard</a>
+<a class="text-slate-500 hover:text-emerald-700 transition-colors font-semibold text-label-lg" href="#">Analytics</a>
+<a class="text-emerald-700 font-bold text-label-lg border-b-2 border-emerald-700" href="#">Upload</a>
+<a class="text-slate-500 hover:text-emerald-700 transition-colors font-semibold text-label-lg" href="#">Badges</a>
+</nav>
+<button class="material-symbols-outlined text-emerald-900 active:scale-95 duration-200 hover:bg-emerald-50 p-2 rounded-full transition-colors">notifications</button>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-6 py-12">
+<!-- Hero Header -->
+<div class="mb-12">
+<h2 class="font-headline-xl text-primary mb-4">Institutional Data Integration</h2>
+<p class="text-body-lg text-on-surface-variant max-w-2xl">
+                Upload CSV files from Hostel Councils or Estate Office to sync electricity and waste data. Streamline campus sustainability tracking with verified institutional records.
+            </p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left Column: Upload & Toggle -->
+<div class="lg:col-span-7 space-y-gutter">
+<!-- Simulation Toggle Card -->
+<div class="bg-surface-container-lowest border border-outline-variant p-card-padding rounded-xl shadow-[0_4px_20px_rgba(27,67,50,0.05)]">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="p-3 bg-tertiary-fixed rounded-lg text-on-tertiary-fixed">
+<span class="material-symbols-outlined">sync_alt</span>
+</div>
+<div>
+<h3 class="font-headline-md text-primary">Future Institutional Integration Mode</h3>
+<p class="text-label-lg text-on-surface-variant">Enable live API connection simulation for future deployments.</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-14 h-7 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-secondary"></div>
+</label>
+</div>
+</div>
+<!-- Drag and Drop Zone -->
+<div class="bg-white border-2 border-dashed border-outline-variant p-12 rounded-xl flex flex-col items-center justify-center text-center hover:border-secondary transition-colors cursor-pointer group">
+<div class="w-20 h-20 bg-secondary-fixed rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-on-secondary-container !text-4xl" data-weight="fill">cloud_upload</span>
+</div>
+<h3 class="font-headline-md text-primary mb-2">Select CSV Files to Upload</h3>
+<p class="text-body-md text-on-surface-variant mb-8 max-w-xs">
+                        Drag and drop your institutional data files here, or <span class="text-secondary font-bold">browse your computer</span>.
+                    </p>
+<div class="flex gap-4">
+<div class="flex items-center gap-2 px-4 py-2 bg-surface-container text-label-sm text-on-surface-variant rounded-lg border border-outline-variant">
+<span class="material-symbols-outlined !text-sm">description</span>
+                            hostel_council_data.csv
+                        </div>
+<div class="flex items-center gap-2 px-4 py-2 bg-surface-container text-label-sm text-on-surface-variant rounded-lg border border-outline-variant">
+<span class="material-symbols-outlined !text-sm">description</span>
+                            estate_utility_log.csv
+                        </div>
+</div>
+</div>
+<!-- Info Card -->
+<div class="bg-primary-container p-6 rounded-xl text-on-primary-container flex gap-4">
+<span class="material-symbols-outlined">info</span>
+<p class="text-label-lg">
+                        All uploaded data undergoes an automated verification process against institutional records to ensure 100% accuracy in campus sustainability reporting.
+                    </p>
+</div>
+</div>
+<!-- Right Column: Recent Uploads -->
+<div class="lg:col-span-5">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-[0_4px_20px_rgba(27,67,50,0.05)] h-full">
+<div class="p-card-padding border-b border-outline-variant flex justify-between items-center">
+<h3 class="font-headline-md text-primary">Recent Uploads</h3>
+<span class="text-label-sm text-secondary font-bold cursor-pointer hover:underline">View History</span>
+</div>
+<div class="divide-y divide-outline-variant">
+<!-- Upload Item 1 -->
+<div class="p-card-padding hover:bg-surface-container-low transition-colors">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-secondary-fixed rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container">bolt</span>
+</div>
+<div>
+<p class="font-bold text-primary">Electricity Data H6 - Verified</p>
+<p class="text-label-sm text-on-surface-variant">Hostel Council H6 • 2.4 MB</p>
+</div>
+</div>
+<span class="bg-secondary-container text-on-secondary-container text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">Verified</span>
+</div>
+<div class="flex items-center gap-2 mt-4 text-label-sm text-outline">
+<span class="material-symbols-outlined !text-sm">schedule</span>
+                                2 hours ago by Admin_Sarah
+                            </div>
+</div>
+<!-- Upload Item 2 -->
+<div class="p-card-padding hover:bg-surface-container-low transition-colors">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-tertiary-fixed rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-on-tertiary-fixed-variant">delete_outline</span>
+</div>
+<div>
+<p class="font-bold text-primary">Waste Management Report Q3</p>
+<p class="text-label-sm text-on-surface-variant">Estate Office • 1.1 MB</p>
+</div>
+</div>
+<span class="bg-secondary-container text-on-secondary-container text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">Verified</span>
+</div>
+<div class="flex items-center gap-2 mt-4 text-label-sm text-outline">
+<span class="material-symbols-outlined !text-sm">schedule</span>
+                                Yesterday, 14:45 by System_Sync
+                            </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Gamified Progress Hint -->
+<section class="mt-section-gap">
+<div class="bg-white border border-outline-variant p-8 rounded-xl overflow-hidden relative">
+<div class="relative z-10 lg:w-2/3">
+<h3 class="font-headline-md text-primary mb-2">Data Quality Score: Institutional Grade</h3>
+<p class="text-body-md text-on-surface-variant mb-6">Your recent uploads have increased the campus's data transparency rating. We are 85% towards achieving the "Green Transparency" institutional badge.</p>
+<div class="w-full h-4 bg-secondary-fixed/30 rounded-full mb-4">
+<div class="h-full bg-secondary w-[85%] rounded-full relative">
+<div class="absolute -right-2 -top-1 w-6 h-6 bg-white border-2 border-secondary rounded-full flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-secondary !text-[14px]" data-weight="fill">military_tech</span>
+</div>
+</div>
+</div>
+<div class="flex justify-between text-label-sm font-bold text-secondary uppercase tracking-widest">
+<span>Current: Gold Tier</span>
+<span>Target: Platinum Institutional</span>
+</div>
+</div>
+<!-- Abstract Design Decor -->
+<div class="absolute right-0 top-0 bottom-0 w-1/3 bg-secondary-fixed opacity-10 flex items-center justify-center">
+<span class="material-symbols-outlined !text-[180px] text-secondary/20">analytics</span>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full h-16 bg-white/95 backdrop-blur-lg border-t border-slate-200 shadow-[0_-4px_20px_rgba(27,67,50,0.08)] flex justify-around items-center px-4 pb-safe z-50 rounded-t-2xl">
+<div class="flex flex-col items-center justify-center text-slate-400 px-4 py-1">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-plus-jakarta-sans text-[10px] font-semibold uppercase tracking-wider">Dashboard</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 px-4 py-1">
+<span class="material-symbols-outlined" data-icon="leaderboard">leaderboard</span>
+<span class="font-plus-jakarta-sans text-[10px] font-semibold uppercase tracking-wider">Analytics</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-emerald-100/50 text-emerald-800 rounded-xl px-4 py-1">
+<span class="material-symbols-outlined" data-icon="cloud_upload">cloud_upload</span>
+<span class="font-plus-jakarta-sans text-[10px] font-semibold uppercase tracking-wider">Upload</span>
+</div>
+<div class="flex flex-col items-center justify-center text-slate-400 px-4 py-1">
+<span class="material-symbols-outlined" data-icon="military_tech">military_tech</span>
+<span class="font-plus-jakarta-sans text-[10px] font-semibold uppercase tracking-wider">Badges</span>
+</div>
+</nav>
+</body></html>
